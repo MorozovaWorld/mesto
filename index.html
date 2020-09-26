@@ -15,7 +15,32 @@
       <img src="./images/logo.svg" alt="логотип сайта" class="header__logo">
     </header>
     <main>
+      <section class="profile section-width">
+        <img class="profile__image" alt="аватар владельца аккаунта" src="./images/image.jpg">
+        <div class="profile__info">
+          <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+          <p class="profile__info-subtitle">Исследователь океана</p>
 
+
+          <button class="pop-up-button-open" onclick="#" name="pop-up-button"></button>
+
+
+          <div class="pop-up">
+            <h2 class="pop-up__title">Редактировать профиль</h2>
+            <form class="form">
+              <fieldset class="form__input-text-form">
+                <input type="text" name="name" placeholder="Жак-Ив Кусто" class="form__input-text" required>
+              </fieldset>
+              <fieldset class="form__input-text-form">
+                <input type="text" name="description" placeholder="Исследователь океана" class="form__input-text" required>
+              </fieldset>
+            </form>
+            <button type="submit" class="pop-up__button-submit">Сохранить</button>
+          </div>
+        
+
+        </div>
+      </section>
     </main>
     <footer class="footer">
 

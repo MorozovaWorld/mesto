@@ -5,3 +5,17 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/section-width/section-width.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__info-title/profil__info-title.css);
+@import url(../blocks/profile/__info-subtitle/profile__info-subtitle.css);
+@import url(../blocks/profile/__info-title/profil__info-title.css);
+@import url(../blocks/pop-up-button/pop-up-button-open.css);
+@import url(../blocks/pop-up/pop-up.css);
+@import url(../blocks/pop-up/__title/pop-up__title.css);
+@import url(../blocks/pop-up/__form/form.css);
+@import url(../blocks/pop-up/__form/__input-text-form/form__input-text-form.css);
+@import url(../blocks/pop-up/__form/__input-text/form__input-text.css);
+@import url(../blocks/pop-up/__button-submit/pop-up__button-submit.css);

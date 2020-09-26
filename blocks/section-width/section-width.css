@@ -1,0 +1,3 @@
+.section-width {
+  width: calc(100% - 199px*2);
+}
