@@ -1,0 +1,30 @@
+.profile__info-title {
+  margin: 0 17px 0 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.33;
+}
+
+@media screen and (max-width: 896px) {
+  .profile__info-title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info-title {
+    font-size: 27px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__info-title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__info-title {
+    margin-right: 8px;
+  }
+}

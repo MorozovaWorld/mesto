@@ -18,28 +18,93 @@
       <section class="profile section-width">
         <img class="profile__image" alt="аватар владельца аккаунта" src="./images/image.jpg">
         <div class="profile__info">
-          <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+          <div class="profile__title-edit">
+            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+            <button class="profile__popup-button-open opacity" onclick="#" name="popup-button-open">
+              <img src="./images/edit-btn.svg" alt="иконка редактирования профиля" class="profile__popup-button-open-icon">
+            </button>
+          </div>
           <p class="profile__info-subtitle">Исследователь океана</p>
 
-
-          <button class="pop-up-button-open" onclick="#" name="pop-up-button"></button>
-
-
-          <div class="pop-up">
-            <h2 class="pop-up__title">Редактировать профиль</h2>
-            <form class="form">
-              <fieldset class="form__input-text-form">
-                <input type="text" name="name" placeholder="Жак-Ив Кусто" class="form__input-text" required>
-              </fieldset>
-              <fieldset class="form__input-text-form">
-                <input type="text" name="description" placeholder="Исследователь океана" class="form__input-text" required>
-              </fieldset>
-            </form>
-            <button type="submit" class="pop-up__button-submit">Сохранить</button>
+          <div class="popup popup_opened">
+            <div class="popup__container">
+              <h2 class="popup__title">Редактировать профиль</h2>
+              <form class="form" method="POST" action="#">
+                <fieldset class="form__input-text-form">
+                  <input type="text" name="name" placeholder="Жак-Ив Кусто" class="form__input-text" required>
+                </fieldset>
+                <fieldset class="form__input-text-form">
+                  <input type="text" name="description" placeholder="Исследователь океана" class="form__input-text" required>
+                </fieldset>
+              </form>
+              <button type="submit" class="popup__button-submit opacity" name="popup-button-submit">Сохранить</button>
+              <button class="popup__close-icon opacity" type="button" name="popup-button-close">
+                <img src="./images/Close Icon.svg" alt="крестик чтобы закрыть окно редактирования">
+              </button>
+            </div>
           </div>
-        
-
         </div>
+        <button class="add-button opacity" type="button" name="add-button">
+          <img src="./images/add-btn.svg" alt="кнопка добавить">
+        </button>
+      </section>
+      <section class="places section-width">
+        <ul class="cards">
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото старинного здания в Карачаевске" class="card__img">
+            <figcaption class="card__caption">Карачаевск</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото горы Эльбрус" class="card__img">
+            <figcaption class="card__caption">Гора Эльбрус</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото горы Домбай" class="card__img">
+            <figcaption class="card__caption">Домбай</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото горы Эльбрус" class="card__img">
+            <figcaption class="card__caption">Гора Эльбрус</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото горы Домбай" class="card__img">
+            <figcaption class="card__caption">Домбай</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+          <li class="card">
+            <figure class="card__figure">
+            <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото старинного здания в Карачаевске" class="card__img">
+            <figcaption class="card__caption">Карачаево-Черкессия</figcaption>
+            </figure>
+            <button type="button" name="card-like" class="card-like">
+              <img src="./images/like.svg" alt="иконка сердечка">
+            </button>
+          </li>
+        </ul>
       </section>
     </main>
     <footer class="footer">
