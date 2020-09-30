@@ -20,13 +20,13 @@
         <div class="profile__info">
           <div class="profile__title-edit">
             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-            <button class="profile__popup-button-open opacity" onclick="" name="popup-button-open">
+            <button class="profile__popup-button-open opacity" onclick="popupOpen('popup')" name="popupButtonOpen">
               <img src="./images/edit-btn.svg" alt="иконка редактирования профиля" class="profile__popup-button-open-icon">
             </button>
           </div>
           <p class="profile__info-subtitle">Исследователь океана</p>
 
-          <div class="popup popup_opened">
+          <div class="popup">
             <div class="popup__container">
               <h2 class="popup__title">Редактировать профиль</h2>
               <form class="form" method="POST" action="#">
@@ -38,7 +38,7 @@
                 </fieldset>
               </form>
               <button type="submit" class="popup__button-submit opacity" name="popup-button-submit">Сохранить</button>
-              <button class="popup__close-icon opacity" type="button" name="popup-button-close">
+              <button class="popup__close-icon opacity" onclick="popupClose('popup')" name="popup-button-close">
                 <img src="./images/Close Icon.svg" alt="крестик чтобы закрыть окно редактирования">
               </button>
             </div>
@@ -123,5 +123,6 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
