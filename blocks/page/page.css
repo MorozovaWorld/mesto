@@ -21,9 +21,3 @@
     padding-bottom: 36px;
   }
 }
-
-* {
-  outline-width: 1px;
-  outline-style: solid;
-  outline-color: red;
-}
