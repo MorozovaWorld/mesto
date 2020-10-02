@@ -1,5 +1,6 @@
 .form__input-text {
   width: 100%;
+  min-height: 27px;
   font-weight: normal;
   font-size: 14px;
   line-height: 1.21;
