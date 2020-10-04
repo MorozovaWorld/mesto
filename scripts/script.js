@@ -9,8 +9,8 @@ let jobInputNew = document.querySelector('.profile__info-subtitle');
 
 function popupOpen() {
   popup.classList.add('popup_opened');
-  nameInput.placeholder = nameInputNew.textContent;
-  jobInput.placeholder = jobInputNew.textContent;
+  nameInput.value = nameInputNew.textContent;
+  jobInput.value = jobInputNew.textContent;
 }
 
 function popupClose() {
