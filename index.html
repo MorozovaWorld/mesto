@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Интерактивная пользовательская страница с профилем и фотографиями">
   <meta name="author" content="Екатерина Морозова">
+  <script src="./scripts/script.js" defer></script>
 </head>
 <body class="body">
   <div class="page">
@@ -24,90 +25,47 @@
             </button>
           </div>
           <p class="profile__info-subtitle">Исследователь океана</p>
-
-          <div class="popup">
-            <div class="popup__container">
-              <form class="popup__form" name="form">
-                <fieldset class="popup__input-text-form">
-                  <legend class="popup__title">Редактировать профиль</legend>
-                  <input type="text" id="name" placeholder="Имя" class="popup__input-text" required>
-                  <input type="text" id="job" placeholder="Профессия" class="popup__input-text">
-                </fieldset>
-                <button type="submit" class="popup__button-submit">Сохранить</button>
-              </form>
-              <button class="popup__close opacity" type="reset">
-                <img src="./images/Close-Icon.svg" alt="крестик чтобы закрыть окно редактирования">
-              </button>
-            </div>
-          </div>
         </div>
         <button class="add-button opacity" type="button">
           <img src="./images/add-btn.svg" alt="кнопка добавить">
         </button>
       </section>
       <section class="places section-width">
-        <ul class="cards">
-          <!-- <li class="card">
-            <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото старинного здания в Карачаевске" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Карачаевск</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото горы Эльбрус" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Гора Эльбрус</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото горы Домбай" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Домбай</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/kirill-pershin-1404681-unsplash.png" alt="фото горы Эльбрус" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Гора Эльбрус</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото горы Домбай" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Домбай</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото старинного здания в Карачаевске" class="card__img">
-            <div class="card__caption">
-              <h2 class="card__caption-text">Карачаево-Черкессия</h2>
-              <button type="button" class="card__like">
-                <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
-              </button>
-            </div>
-          </li> -->
-        </ul>
+        <ul class="cards"></ul>
       </section>
     </main>
     <footer class="footer section-width">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="popup__form" name="form">
+          <fieldset class="popup__input-text-form">
+            <legend class="popup__title">Редактировать профиль</legend>
+            <input type="text" id="name" placeholder="Имя" class="popup__input-text" required>
+            <input type="text" id="job" placeholder="Профессия" class="popup__input-text">
+          </fieldset>
+          <button type="submit" class="popup__button-submit">Сохранить</button>
+        </form>
+        <button class="popup__close opacity" type="reset">
+          <img src="./images/Close-Icon.svg" alt="крестик чтобы закрыть окно редактирования">
+        </button>
+      </div>
+    </div>
   </div>
-  <script src="./scripts/script.js"></script>
+  <template class="template">
+    <li class="card">
+      <img src="" alt="" class="card__img">
+      <div class="card__caption">
+        <h2 class="card__caption-text"></h2>
+        <button type="button" class="card__like">
+          <img src="./images/like.svg" alt="иконка сердечка" class="card__like-icon opacity">
+        </button>
+        <button type="button" class="card__delete opacity">
+          <img src="./images/delete-btn.svg" alt="иконка мусорной корзины">
+        </button>
+      </div>
+    </li>
+  </template>
 </body>
 </html>
