@@ -1,10 +1,13 @@
 .page {
   max-width: 1280px;
   min-width: 320px;
+  min-height: 100vh;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   padding-top: 45px;
   padding-bottom: 60px;
-  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   color: #fff;
   background-color: #000;
   box-sizing: border-box;
@@ -21,4 +24,11 @@
     padding-bottom: 36px;
   }
 }
+
+* {
+  outline-width: 1px;
+  outline-style: solid;
+  outline-color: red;
+}
+
 
