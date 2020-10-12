@@ -69,13 +69,21 @@ const renderCards = () => {
     cards.append(...items)
 };
 
+const handlerRemove = (event) => {
+  event.target.closest('.card').remove();
+};
+
 const getItems = (element) => {
     const card = template.content.cloneNode(true);
+    const removeButton = card.querySelector('.card__delete');
+
     cardText = card.querySelector('.card__caption-text');
     cardImg = card.querySelector('.card__img');
 
     cardText.textContent = element['name'];
     cardImg.setAttribute('src', element['link']);
+
+    removeButton.addEventListener('click', handlerRemove);
 
     return card;
 };
