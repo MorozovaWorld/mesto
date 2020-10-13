@@ -1,4 +1,4 @@
-.add-button {
+.addpic-popup-button-open {
   min-width: 150px;
   height: 50px;
   border: 2px solid #fff;
@@ -9,19 +9,19 @@
 }
 
 @media screen and (max-width: 768px) {
-  .add-button {
+  .addpic-popup-button-open {
     min-width: 100px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .add-button {
+  .addpic-popup-button-open {
     min-width: 50px;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .add-button {
+  .addpic-popup-button-open {
     margin-left: 0;
     width: 100%;
   }

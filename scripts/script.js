@@ -1,38 +1,68 @@
-let popup = document.querySelector('.popup');
-let popupOpenBtn = document.querySelector('.profile__popup-button-open');
-let popupCloseBtn = popup.querySelector('.popup__close');
-let formElement = popup.querySelector('.popup__form');
-let nameInput = formElement.querySelector('#name');
-let jobInput = formElement.querySelector('#job');
+let popupEdProf = document.querySelector('.popup_action_edit-profile');
+let popupAddPic = document.querySelector('.popup_action_add-picture');
+let popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
+let popupAddPicOpenBtn = document.querySelector('.addpic-popup-button-open');
+let popupEdProfCloseBtn = popupEdProf.querySelector('.popup__close');
+let popupAddPicCloseBtn = popupAddPic.querySelector('.popup__close');
+let formElementEdProf = popupEdProf.querySelector('.popup__form_action_edit-profile');
+let formElementAdPic = popupAddPic.querySelector('.popup__form_action_add-picture');
+let nameInput = formElementEdProf.querySelector('#name');
+let jobInput = formElementEdProf.querySelector('#job');
+let picNameInput = formElementAdPic.querySelector('#picName');
+let picLinkInput = formElementAdPic.querySelector('#picLink');
 let nameInputNew = document.querySelector('.profile__info-title');
 let jobInputNew = document.querySelector('.profile__info-subtitle');
 
-function popupOpen() {
-  popup.classList.add('popup_opened');
+const openEdFrofPopup = () => {
+  popupEdProf.classList.add('popup_opened');
   nameInput.value = nameInputNew.textContent;
   jobInput.value = jobInputNew.textContent;
 }
 
-function popupClose() {
+const closeEdFrofPopup = () => {
   nameInput.value = "";
   jobInput.value = "";
-  popup.classList.remove('popup_opened');
-
+  popupEdProf.classList.remove('popup_opened');
 }
 
-popupOpenBtn.addEventListener('click', popupOpen);
-popupCloseBtn.addEventListener('click', popupClose);
+const openAdPicPopup = () => {
+  popupAddPic.classList.add('popup_opened');
+}
 
-function formSubmitHandler (evt) {
+const closeAdPicPopup = () => {
+  picNameInput.value = "";
+  picLinkInput.value = "";
+  popupAddPic.classList.remove('popup_opened');
+}
+
+popupEdProfOpenBtn.addEventListener('click', openEdFrofPopup);
+popupEdProfCloseBtn.addEventListener('click', closeEdFrofPopup);
+popupAddPicOpenBtn.addEventListener('click', openAdPicPopup);
+popupAddPicCloseBtn.addEventListener('click', closeAdPicPopup);
+
+const editProfileFormSubmitHandler = (evt) => {
     evt.preventDefault();
 
     nameInputNew.textContent = nameInput.value;
     jobInputNew.textContent = jobInput.value;
 
-    popupClose();
+    closeEdFrofPopup();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+const addPictureformSubmitHandler = (evt) => {
+  evt.preventDefault();
+
+  let addPicture = {};
+  addPicture['name'] = picNameInput.value;
+  addPicture['link'] = picLinkInput.value;
+
+  cards.prepend(getItems(addPicture));
+
+  closeAdPicPopup();
+}
+
+formElementEdProf.addEventListener('submit', editProfileFormSubmitHandler);
+formElementAdPic.addEventListener('submit', addPictureformSubmitHandler);
 
 const initialCards = [
   {
