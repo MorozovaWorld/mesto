@@ -103,9 +103,15 @@ const handlerRemove = (event) => {
   event.target.closest('.card').remove();
 };
 
+const handlerLike = (event) => {
+  const evtTarget = event.target;
+  evtTarget.classList.toggle('card__like-icon_status_clicked');
+};
+
 const getItems = (element) => {
     const card = template.content.cloneNode(true);
     const removeButton = card.querySelector('.card__delete');
+    const likeButton = card.querySelector('.card__like-icon');
 
     cardText = card.querySelector('.card__caption-text');
     cardImg = card.querySelector('.card__img');
@@ -114,6 +120,7 @@ const getItems = (element) => {
     cardImg.setAttribute('src', element['link']);
 
     removeButton.addEventListener('click', handlerRemove);
+    likeButton.addEventListener('click', handlerLike);
 
     return card;
 };
