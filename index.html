@@ -53,16 +53,27 @@
       </div>
     </div>
     <div class="popup popup_action_add-picture">
-      <div class="popup__container">
+      <div class="popup__container popup__container_action_add-picture">
         <form class="popup__form popup__form_action_add-picture" name="AddPictureform">
           <fieldset class="popup__input-text-form">
-            <legend class="popup__title">Новое место</legend>
-            <input type="text" id="picName" placeholder="Название" class="popup__input-text" required>
-            <input type="text" id="picLink" placeholder="Ссылка на картинку" class="popup__input-text">
+            <legend class="popup__title popup__title_action_add-picture">Новое место</legend>
+            <input type="text" id="picName" placeholder="Название" class="popup__input-text popup__input-text_action_add-picture" required>
+            <input type="text" id="picLink" placeholder="Ссылка на картинку" class="popup__input-text popup__input-text_action_add-picture">
           </fieldset>
-          <button type="submit" class="popup__button-submit">Создать</button>
+          <button type="submit" class="popup__button-submit popup__button-submit_action_add-picture">Создать</button>
         </form>
-        <button class="popup__close opacity" type="reset">
+        <button class="popup__close popup__close_position_add-picture-popup opacity" type="reset">
+          <img src="./images/Close-Icon.svg" alt="крестик чтобы закрыть окно редактирования">
+        </button>
+      </div>
+    </div>
+    <div class="popup popup_action_enlarge-picture">
+      <div class="popup__container-picture">
+        <figure class="popup__figure">
+          <img src="" alt="увеличенное изображение фотографии" class="popup__picture-enlarged">
+          <figcaption class="popup__picture-caption"></figcaption>
+        </figure>
+        <button class="popup__close popup__close_position_picture-popup opacity" type="reset">
           <img src="./images/Close-Icon.svg" alt="крестик чтобы закрыть окно редактирования">
         </button>
       </div>

@@ -40,7 +40,7 @@ popupEdProfCloseBtn.addEventListener('click', closeEdFrofPopup);
 popupAddPicOpenBtn.addEventListener('click', openAdPicPopup);
 popupAddPicCloseBtn.addEventListener('click', closeAdPicPopup);
 
-const editProfileFormSubmitHandler = (evt) => {
+const handleFormSubmitEditProfile = (evt) => {
     evt.preventDefault();
 
     nameInputNew.textContent = nameInput.value;
@@ -49,7 +49,7 @@ const editProfileFormSubmitHandler = (evt) => {
     closeEdFrofPopup();
 }
 
-const addPictureformSubmitHandler = (evt) => {
+const handleFormSubmitAddPicture = (evt) => {
   evt.preventDefault();
 
   let addPicture = {};
@@ -61,8 +61,8 @@ const addPictureformSubmitHandler = (evt) => {
   closeAdPicPopup();
 }
 
-formElementEdProf.addEventListener('submit', editProfileFormSubmitHandler);
-formElementAdPic.addEventListener('submit', addPictureformSubmitHandler);
+formElementEdProf.addEventListener('submit', handleFormSubmitEditProfile);
+formElementAdPic.addEventListener('submit', handleFormSubmitAddPicture);
 
 const initialCards = [
   {
@@ -99,19 +99,40 @@ const renderCards = () => {
     cards.append(...items)
 };
 
-const handlerRemove = (event) => {
+const handleRemove = (event) => {
   event.target.closest('.card').remove();
 };
 
-const handlerLike = (event) => {
+const handleLike = (event) => {
   const evtTarget = event.target;
   evtTarget.classList.toggle('card__like-icon_status_clicked');
 };
+
+const handlePicPopupClose = (event) => {
+  document.querySelector('.popup_action_enlarge-picture').classList.remove('popup_opened');
+
+}
+
+const handlePicture = (event) => {
+  const popupEnlargePic = document.querySelector('.popup_action_enlarge-picture');
+  const pictureEnlarged = popupEnlargePic.querySelector('.popup__picture-enlarged');
+  const caption = popupEnlargePic.querySelector('.popup__picture-caption');
+  const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
+
+  popupEnlargePic.classList.add('popup_opened');
+
+  pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
+
+  caption.textContent = event.target.nextElementSibling.firstElementChild.textContent;
+
+  picPopupCloseBtn.addEventListener('click', handlePicPopupClose);
+}
 
 const getItems = (element) => {
     const card = template.content.cloneNode(true);
     const removeButton = card.querySelector('.card__delete');
     const likeButton = card.querySelector('.card__like-icon');
+    const picture = card.querySelector('.card__img');
 
     cardText = card.querySelector('.card__caption-text');
     cardImg = card.querySelector('.card__img');
@@ -119,8 +140,9 @@ const getItems = (element) => {
     cardText.textContent = element['name'];
     cardImg.setAttribute('src', element['link']);
 
-    removeButton.addEventListener('click', handlerRemove);
-    likeButton.addEventListener('click', handlerLike);
+    removeButton.addEventListener('click', handleRemove);
+    likeButton.addEventListener('click', handleLike);
+    picture.addEventListener('click', handlePicture);
 
     return card;
 };
