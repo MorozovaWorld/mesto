@@ -14,8 +14,12 @@ let picLinkInput = formElementAdPic.querySelector('#picLink');
 let nameInputNew = document.querySelector('.profile__info-title');
 let jobInputNew = document.querySelector('.profile__info-subtitle');
 
+const toggleModal = (modal) => {
+  modal.classList.toggle('popup_opened');
+}
+
 const openEdFrofPopup = () => {
-  popupEdProf.classList.add('popup_opened');
+  toggleModal(popupEdProf);
   nameInput.value = nameInputNew.textContent;
   jobInput.value = jobInputNew.textContent;
 }
@@ -23,17 +27,17 @@ const openEdFrofPopup = () => {
 const closeEdFrofPopup = () => {
   nameInput.value = "";
   jobInput.value = "";
-  popupEdProf.classList.remove('popup_opened');
+  toggleModal(popupEdProf);
 }
 
 const openAdPicPopup = () => {
-  popupAddPic.classList.add('popup_opened');
+  toggleModal(popupAddPic);
 }
 
 const closeAdPicPopup = () => {
   picNameInput.value = "";
   picLinkInput.value = "";
-  popupAddPic.classList.remove('popup_opened');
+  toggleModal(popupAddPic);
 }
 
 popupEdProfOpenBtn.addEventListener('click', openEdFrofPopup);
@@ -57,7 +61,7 @@ const handleFormSubmitAddPicture = (evt) => {
   addPicture['name'] = picNameInput.value;
   addPicture['link'] = picLinkInput.value;
 
-  cards.prepend(getItems(addPicture));
+  cards.prepend(createItems(addPicture));
 
   closeAdPicPopup();
 }
@@ -96,8 +100,8 @@ const cards = document.querySelector('.cards');
 const template = document.querySelector('.template');
 
 const renderCards = () => {
-    const items = initialCards.map(element => getItems(element));
-    cards.append(...items)
+    const items = initialCards.map(element => createItems(element));
+    cards.append(...items);
 };
 
 const handleRemove = (event) => {
@@ -110,8 +114,7 @@ const handleLike = (event) => {
 };
 
 const handlePicPopupClose = (event) => {
-  document.querySelector('.popup_action_enlarge-picture').classList.remove('popup_opened');
-
+  toggleModal(document.querySelector('.popup_action_enlarge-picture'));
 }
 
 const handlePicture = (event) => {
@@ -120,7 +123,7 @@ const handlePicture = (event) => {
   const caption = popupEnlargePic.querySelector('.popup__picture-caption');
   const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
 
-  popupEnlargePic.classList.add('popup_opened');
+  toggleModal(popupEnlargePic);
 
   pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
 
@@ -129,7 +132,7 @@ const handlePicture = (event) => {
   picPopupCloseBtn.addEventListener('click', handlePicPopupClose);
 }
 
-const getItems = (element) => {
+const createItems = (element) => {
     const card = template.content.cloneNode(true);
     const removeButton = card.querySelector('.card__delete');
     const likeButton = card.querySelector('.card__like-icon');
