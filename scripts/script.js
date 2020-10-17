@@ -1,3 +1,4 @@
+
 let popupEdProf = document.querySelector('.popup_action_edit-profile');
 let popupAddPic = document.querySelector('.popup_action_add-picture');
 let popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
