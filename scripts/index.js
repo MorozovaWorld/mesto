@@ -4,6 +4,7 @@ let popupAddPic = document.querySelector('.popup_action_add-picture');
 let popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
 let popupAddPicOpenBtn = document.querySelector('.addpic-popup-button-open');
 let popupEdProfCloseBtn = popupEdProf.querySelector('.popup__close');
+const popupEdProfSubmitBtn = popupEdProf.querySelector('.popup__button-submit');
 let popupAddPicCloseBtn = popupAddPic.querySelector('.popup__close');
 let formElementEdProf = popupEdProf.querySelector('.popup__form_action_edit-profile');
 let formElementAdPic = popupAddPic.querySelector('.popup__form_action_add-picture');
@@ -22,6 +23,8 @@ const openEdFrofPopup = () => {
   toggleModal(popupEdProf);
   nameInput.value = nameInputNew.textContent;
   jobInput.value = jobInputNew.textContent;
+  popupEdProfSubmitBtn.classList.remove('popup__button-submit_disabled');
+  popupEdProfSubmitBtn.disabled = false;
 }
 
 const closeEdFrofPopup = () => {

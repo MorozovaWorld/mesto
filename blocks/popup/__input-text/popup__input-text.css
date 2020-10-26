@@ -12,11 +12,11 @@
   padding: 0 0 13px;
 }
 
-.popup__input-text:last-child {
-  margin: 0;
+.popup__input-text:last-of-type {
+  margin-bottom: 0;
 }
 
-.popup__input-text::-webkit-input-placeholder {color:#000;}
-.popup__input-text::-moz-placeholder          {color:#000;}
-.popup__input-text::-ms-input-placeholder     {color:#000;}
-.popup__input-text::placeholder               {color:#000;}
+.popup__input-text::-webkit-input-placeholder {color:#c4c4c4;}
+.popup__input-text::-moz-placeholder          {color:#c4c4c4;}
+.popup__input-text::-ms-input-placeholder     {color:#c4c4c4;}
+.popup__input-text::placeholder               {color:#c4c4c4;}
