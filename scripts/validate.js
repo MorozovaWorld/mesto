@@ -11,22 +11,9 @@ const hideInputError = (formElement, input, rest) => {
   input.classList.remove(rest.inputErrorClass);
 };
 
-const hideErrors = (formElement, input, rest) => {
-  const errorElements = Array.from(formElement.querySelectorAll(rest.errorClass));
-  errorElements.forEach((error) => {
-    error.textContent = '';
-  })
-  input.classList.remove(rest.inputErrorClass);
-}
-
 const checkInputValidity = (formElement, input, rest) => {
   if (!input.validity.valid) {
     showInputError(formElement, input, rest);
-
-    popupAddPicCloseBtn.addEventListener('click', (evt) => {
-      hideErrors(formElement, input, rest)});
-    popupEdProfCloseBtn.addEventListener('click', (evt) => {
-      hideErrors(formElement, input, rest)});
   } else {
     hideInputError(formElement, input, rest);
   }

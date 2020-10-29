@@ -1,5 +1,4 @@
-
-let popupEdProf = document.querySelector('.popup_action_edit-profile');
+const popupEdProf = document.querySelector('.popup_action_edit-profile');
 let popupAddPic = document.querySelector('.popup_action_add-picture');
 let popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
 let popupAddPicOpenBtn = document.querySelector('.addpic-popup-button-open');
@@ -15,8 +14,40 @@ let picLinkInput = formElementAdPic.querySelector('#picLink');
 let nameInputNew = document.querySelector('.profile__info-title');
 let jobInputNew = document.querySelector('.profile__info-subtitle');
 
+
 const toggleModal = (modal) => {
   modal.classList.toggle('popup_opened');
+}
+
+
+const closePopupByEscBtn =(evt) => {
+  if (evt.key === 'Escape') {
+    toggleModal(modal);
+  };
+}
+
+const closePopupByBackground = () => {
+  const popups = Array.from(document.querySelectorAll('.popup'));
+  popups.forEach((popup) => {
+    popup.addEventListener('click', (event) => {
+      if (event.target !== event.currentTarget) {
+        return
+      }
+      toggleModal(popup);
+      popup.removeEventListener('keydown', closePopupByEscBtn);
+    })
+  })
+}
+
+const hideInputErrors = (popupWithErrors) => {
+  const inputErrors = Array.from(popupWithErrors.querySelectorAll('.popup__input-error'));
+  inputErrors.forEach((error) => {
+    error.textContent = '';
+  });
+  const inputsWithErrors = Array.from(popupWithErrors.querySelectorAll('.popup__input-text'));
+  inputsWithErrors.forEach((errorInput) => {
+    errorInput.classList.remove('popup__input-text_type_error');
+  });
 }
 
 const openEdFrofPopup = () => {
@@ -25,26 +56,33 @@ const openEdFrofPopup = () => {
   jobInput.value = jobInputNew.textContent;
   popupEdProfSubmitBtn.classList.remove('popup__button-submit_disabled');
   popupEdProfSubmitBtn.disabled = false;
+  hideInputErrors(popupEdProf);
+  popupEdProf.addEventListener('keydown', closePopupByEscBtn);
 }
 
 const closeEdFrofPopup = () => {
   nameInput.value = "";
   jobInput.value = "";
   toggleModal(popupEdProf);
+  popupEdProf.removeEventListener('keydown', closePopupByEscBtn);
 }
 
 const openAdPicPopup = () => {
-  toggleModal(popupAddPic);
-}
-
-const closeAdPicPopup = () => {
   picNameInput.value = "";
   picLinkInput.value = "";
   toggleModal(popupAddPic);
+  hideInputErrors(popupAddPic);
+  popupAddPic.addEventListener('keydown', closePopupByEscBtn);
+}
+
+const closeAdPicPopup = () => {
+  toggleModal(popupAddPic);
+  popupAddPic.removeEventListener('keydown', closePopupByEscBtn);
 }
 
 popupEdProfOpenBtn.addEventListener('click', openEdFrofPopup);
 popupEdProfCloseBtn.addEventListener('click', closeEdFrofPopup);
+
 popupAddPicOpenBtn.addEventListener('click', openAdPicPopup);
 popupAddPicCloseBtn.addEventListener('click', closeAdPicPopup);
 
@@ -117,7 +155,10 @@ const handleLike = (event) => {
 };
 
 const handlePicPopupClose = (event) => {
-  toggleModal(document.querySelector('.popup_action_enlarge-picture'));
+  const popupPicture = document.querySelector('.popup_action_enlarge-picture');
+
+  toggleModal(popupPicture);
+  popupPicture.removeEventListener('keydown', closePopupByEscBtn);
 }
 
 const handlePicture = (event) => {
@@ -127,6 +168,7 @@ const handlePicture = (event) => {
   const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
 
   toggleModal(popupEnlargePic);
+  popupEnlargePic.addEventListener('keydown', closePopupByEscBtn);
 
   pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
 
@@ -155,4 +197,4 @@ const createItems = (element) => {
 };
 
 renderCards();
-
+closePopupByBackground();
