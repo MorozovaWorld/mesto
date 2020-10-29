@@ -19,13 +19,6 @@ const toggleModal = (modal) => {
   modal.classList.toggle('popup_opened');
 }
 
-
-const closePopupByEscBtn =(evt) => {
-  if (evt.key === 'Escape') {
-    toggleModal(modal);
-  };
-}
-
 const closePopupByBackground = () => {
   const popups = Array.from(document.querySelectorAll('.popup'));
   popups.forEach((popup) => {
@@ -34,10 +27,28 @@ const closePopupByBackground = () => {
         return
       }
       toggleModal(popup);
-      popup.removeEventListener('keydown', closePopupByEscBtn);
     })
   })
 }
+
+const closePopupByEscBtn = (evt) => {
+  if (evt.key === 'Escape') {
+    popups = Array.from(document.querySelectorAll('.popup_opened'));
+    popups.forEach((popup) => {
+
+      if (popup.classList.contains('popup_action_edit-profile')) {
+        closeEdFrofPopup();
+      }
+      if (popup.classList.contains('popup_action_add-picture')) {
+        closeAdPicPopup();
+      }
+      if (popup.classList.contains('popup_action_enlarge-picture')) {
+        handlePicPopupClose();
+      };
+    });
+  }
+
+};
 
 const hideInputErrors = (popupWithErrors) => {
   const inputErrors = Array.from(popupWithErrors.querySelectorAll('.popup__input-error'));
@@ -57,14 +68,14 @@ const openEdFrofPopup = () => {
   popupEdProfSubmitBtn.classList.remove('popup__button-submit_disabled');
   popupEdProfSubmitBtn.disabled = false;
   hideInputErrors(popupEdProf);
-  popupEdProf.addEventListener('keydown', closePopupByEscBtn);
+  document.addEventListener('keydown', closePopupByEscBtn);
 }
 
 const closeEdFrofPopup = () => {
   nameInput.value = "";
   jobInput.value = "";
+  document.removeEventListener('keydown', closePopupByEscBtn);
   toggleModal(popupEdProf);
-  popupEdProf.removeEventListener('keydown', closePopupByEscBtn);
 }
 
 const openAdPicPopup = () => {
@@ -72,12 +83,12 @@ const openAdPicPopup = () => {
   picLinkInput.value = "";
   toggleModal(popupAddPic);
   hideInputErrors(popupAddPic);
-  popupAddPic.addEventListener('keydown', closePopupByEscBtn);
+  document.addEventListener('keydown', closePopupByEscBtn);
 }
 
 const closeAdPicPopup = () => {
+  document.removeEventListener('keydown', closePopupByEscBtn);
   toggleModal(popupAddPic);
-  popupAddPic.removeEventListener('keydown', closePopupByEscBtn);
 }
 
 popupEdProfOpenBtn.addEventListener('click', openEdFrofPopup);
@@ -155,10 +166,8 @@ const handleLike = (event) => {
 };
 
 const handlePicPopupClose = (event) => {
-  const popupPicture = document.querySelector('.popup_action_enlarge-picture');
-
-  toggleModal(popupPicture);
-  popupPicture.removeEventListener('keydown', closePopupByEscBtn);
+  document.removeEventListener('keydown', closePopupByEscBtn);
+  toggleModal(document.querySelector('.popup_action_enlarge-picture'));
 }
 
 const handlePicture = (event) => {
@@ -168,7 +177,7 @@ const handlePicture = (event) => {
   const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
 
   toggleModal(popupEnlargePic);
-  popupEnlargePic.addEventListener('keydown', closePopupByEscBtn);
+  document.addEventListener('keydown', closePopupByEscBtn);
 
   pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
 
