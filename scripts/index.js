@@ -1,20 +1,24 @@
 const popupEdProf = document.querySelector('.popup_action_edit-profile');
-let popupAddPic = document.querySelector('.popup_action_add-picture');
+const popupAddPic = document.querySelector('.popup_action_add-picture');
 const popupEnlargePic = document.querySelector('.popup_action_enlarge-picture');
-let popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
-let popupAddPicOpenBtn = document.querySelector('.addpic-popup-button-open');
-let popupEdProfCloseBtn = popupEdProf.querySelector('.popup__close');
+const popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
+const popupAddPicOpenBtn = document.querySelector('.addpic-popup-button-open');
+const popupEdProfCloseBtn = popupEdProf.querySelector('.popup__close');
 const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
+const pictureEnlarged = popupEnlargePic.querySelector('.popup__picture-enlarged');
+const caption = popupEnlargePic.querySelector('.popup__picture-caption');
 const popupEdProfSubmitBtn = popupEdProf.querySelector('.popup__button-submit');
-let popupAddPicCloseBtn = popupAddPic.querySelector('.popup__close');
-let formElementEdProf = popupEdProf.querySelector('.popup__form_action_edit-profile');
-let formElementAdPic = popupAddPic.querySelector('.popup__form_action_add-picture');
-let nameInput = formElementEdProf.querySelector('#name');
-let jobInput = formElementEdProf.querySelector('#job');
-let picNameInput = formElementAdPic.querySelector('#picName');
-let picLinkInput = formElementAdPic.querySelector('#picLink');
-let nameInputNew = document.querySelector('.profile__info-title');
-let jobInputNew = document.querySelector('.profile__info-subtitle');
+const popupAddPicCloseBtn = popupAddPic.querySelector('.popup__close');
+const formElementEdProf = popupEdProf.querySelector('.popup__form_action_edit-profile');
+const formElementAdPic = popupAddPic.querySelector('.popup__form_action_add-picture');
+const nameInput = formElementEdProf.querySelector('#name');
+const jobInput = formElementEdProf.querySelector('#job');
+const picNameInput = formElementAdPic.querySelector('#picName');
+const picLinkInput = formElementAdPic.querySelector('#picLink');
+const nameInputNew = document.querySelector('.profile__info-title');
+const jobInputNew = document.querySelector('.profile__info-subtitle');
+const cards = document.querySelector('.cards');
+const template = document.querySelector('.template');
 
 
 const toggleModal = (modal) => {
@@ -107,7 +111,7 @@ const handleFormSubmitEditProfile = (evt) => {
 const handleFormSubmitAddPicture = (evt) => {
   evt.preventDefault();
 
-  let addPicture = {};
+  const addPicture = {};
   addPicture['name'] = picNameInput.value;
   addPicture['link'] = picLinkInput.value;
 
@@ -146,9 +150,6 @@ const initialCards = [
   }
 ];
 
-const cards = document.querySelector('.cards');
-const template = document.querySelector('.template');
-
 const renderCards = () => {
     const items = initialCards.map(element => createItem(element));
     cards.append(...items);
@@ -168,13 +169,9 @@ const handlePicPopupClose = (event) => {
 }
 
 const handlePicture = (event) => {
-  const pictureEnlarged = popupEnlargePic.querySelector('.popup__picture-enlarged');
-  const caption = popupEnlargePic.querySelector('.popup__picture-caption');
-
   toggleModal(popupEnlargePic);
 
   pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
-
   caption.textContent = event.target.nextElementSibling.firstElementChild.textContent;
 }
 
