@@ -120,10 +120,11 @@ const handleFormSubmitAddPicture = (evt) => {
 formElementEdProf.addEventListener('submit', handleFormSubmitEditProfile);
 formElementAdPic.addEventListener('submit', handleFormSubmitAddPicture);
 
+const editProfileFormValidator = new FormValidator(enableValidation, formElementEdProf);
+editProfileFormValidator.enableValidation();
 
-
-
-
+const addPicFormValidator = new FormValidator(enableValidation, formElementAdPic);
+addPicFormValidator.enableValidation();
 
 
 const initialCards = [
@@ -225,4 +226,8 @@ const handlePicPopupClose = (event) => {
 picPopupCloseBtn.addEventListener('click', handlePicPopupClose);
 
 renderCards();
+
+
+
+
 closePopupByBackground();
