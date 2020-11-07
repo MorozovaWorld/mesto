@@ -1,3 +1,7 @@
+import { Card } from './card.js';
+import { FormValidator } from './FormValidator.js';
+export {toggleModal, pictureEnlarged, caption, popupEnlargePic};
+
 const popupEdProf = document.querySelector('.popup_action_edit-profile');
 const popupAddPic = document.querySelector('.popup_action_add-picture');
 const popupEdProfOpenBtn = document.querySelector('.profile__popup-button-open');
@@ -13,7 +17,11 @@ const picNameInput = formElementAdPic.querySelector('#picName');
 const picLinkInput = formElementAdPic.querySelector('#picLink');
 const nameInputNew = document.querySelector('.profile__info-title');
 const jobInputNew = document.querySelector('.profile__info-subtitle');
-
+const cards = document.querySelector('.cards');
+const popupEnlargePic = document.querySelector('.popup_action_enlarge-picture');
+const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
+const pictureEnlarged = popupEnlargePic.querySelector('.popup__picture-enlarged');
+const caption = popupEnlargePic.querySelector('.popup__picture-caption');
 
 const toggleModal = (modal) => {
   modal.classList.toggle('popup_opened');
@@ -120,12 +128,20 @@ const handleFormSubmitAddPicture = (evt) => {
 formElementEdProf.addEventListener('submit', handleFormSubmitEditProfile);
 formElementAdPic.addEventListener('submit', handleFormSubmitAddPicture);
 
+const enableValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorClass: '.popup__input-error'
+};
+
 const editProfileFormValidator = new FormValidator(enableValidation, formElementEdProf);
 editProfileFormValidator.enableValidation();
 
 const addPicFormValidator = new FormValidator(enableValidation, formElementAdPic);
 addPicFormValidator.enableValidation();
-
 
 const initialCards = [
   {
@@ -154,62 +170,6 @@ const initialCards = [
   }
 ];
 
-const cards = document.querySelector('.cards');
-const popupEnlargePic = document.querySelector('.popup_action_enlarge-picture');
-const picPopupCloseBtn = popupEnlargePic.querySelector('.popup__close_position_picture-popup');
-const pictureEnlarged = popupEnlargePic.querySelector('.popup__picture-enlarged');
-const caption = popupEnlargePic.querySelector('.popup__picture-caption');
-
-class Card {
-  constructor(data, cardSelector) {
-    this._cardSelector = cardSelector;
-    this._name = data.name;
-    this._link = data.link;
-  }
-
-  _getTemplate() {
-    const cardElement = document.querySelector(this._cardSelector)
-    .content
-    .querySelector('.card')
-    .cloneNode(true);
-
-    return cardElement;
-  }
-
-  _handleLike = (event) => {
-    const evtTarget = event.target;
-    evtTarget.classList.toggle('card__like-icon_status_clicked');
-  };
-
-  _handleRemove = (event) => {
-    event.target.closest('.card').remove();
-  };
-
-  _handlePicture = (event) => {
-    toggleModal(popupEnlargePic);
-
-    pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
-    caption.textContent = event.target.nextElementSibling.firstElementChild.textContent;
-  }
-
-  _setEventListeners() {
-    this._element.querySelector('.card__delete').addEventListener('click', this._handleRemove);
-    this._element.querySelector('.card__like-icon').addEventListener('click', this._handleLike);
-    this._element.querySelector('.card__img').addEventListener('click', this._handlePicture);
-  }
-
-  generateCard() {
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__img').alt = this._name;
-    this._element.querySelector('.card__caption-text').textContent = this._name;
-
-    return this._element;
-  }
-}
-
 const renderCards = () => {
   initialCards.forEach((item) => {
     const card = new Card(item, '.template');
@@ -226,8 +186,4 @@ const handlePicPopupClose = (event) => {
 picPopupCloseBtn.addEventListener('click', handlePicPopupClose);
 
 renderCards();
-
-
-
-
 closePopupByBackground();

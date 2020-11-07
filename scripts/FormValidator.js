@@ -1,5 +1,4 @@
-
-class FormValidator {
+export class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -61,13 +60,4 @@ class FormValidator {
     })
   }
 }
-
-const enableValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input-text',
-  submitButtonSelector: '.popup__button-submit',
-  inactiveButtonClass: 'popup__button-submit_disabled',
-  inputErrorClass: 'popup__input-text_type_error',
-  errorClass: '.popup__input-error'
-};
 
