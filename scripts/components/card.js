@@ -1,10 +1,9 @@
-import {toggleModal, pictureEnlarged, caption, popupEnlargePic} from './index.js';
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._cardSelector = cardSelector;
     this._name = data.name;
     this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,17 +24,14 @@ export class Card {
     event.target.closest('.card').remove();
   };
 
-  _handlePicture = (event) => {
-    toggleModal(popupEnlargePic);
-
-    pictureEnlarged.setAttribute('src', event.target.getAttribute('src'));
-    caption.textContent = event.target.nextElementSibling.firstElementChild.textContent;
+  _handleCardClick = () => {
+    this._handleCardClick();
   }
 
   _setEventListeners() {
     this._element.querySelector('.card__delete').addEventListener('click', this._handleRemove);
     this._element.querySelector('.card__like-icon').addEventListener('click', this._handleLike);
-    this._element.querySelector('.card__img').addEventListener('click', this._handlePicture);
+    this._element.querySelector('.card__img').addEventListener('click', this._handleCardClick);
   }
 
   generateCard() {
