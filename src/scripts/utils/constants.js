@@ -8,7 +8,12 @@ export const userName = document.querySelector('.profile__info-title');
 export const userInfo = document.querySelector('.profile__info-subtitle');
 export const cards = document.querySelector('.cards');
 export const cardListSelector = '.cards';
-export const popupEdProfSubmitBtn = document.querySelector('.popup__button-submit');
+export const cardSelector = '.template';
+export const popupSubmitBtn = document.querySelector('.popup__button-submit');
+export const popupSubmitDisabledSelector = 'popup__button-submit_disabled';
+export const PopupWithImageSelector = '.popup_action_enlarge-picture';
+export const popupEdProfSelector = '.popup_action_edit-profile';
+export const popupAddPicSelector = '.popup_action_add-picture';
 
 
 export const initialCards = [
@@ -38,3 +43,11 @@ export const initialCards = [
   }
 ];
 
+export const enableValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__input-text_type_error',
+  errorClass: '.popup__input-error'
+};
