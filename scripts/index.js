@@ -10,50 +10,14 @@ import {
   popupAddPicOpenBtn,
   formElementEdProf,
   formElementAdPic,
-  //nameInput,
-  //jobInput,
-  nameInputNew,
-  jobInputNew,
+  nameInput,
+  jobInput,
+  userName,
+  userInfo,
+  popupEdProfSubmitBtn
 } from './utils/constants.js';
+import UserInfo from './components/UserInfo.js';
 
-
-/* const openEdFrofPopup = () => {
-  toggleModal(popupEdProf);
-  nameInput.value = nameInputNew.textContent;
-  jobInput.value = jobInputNew.textContent;
-  popupEdProfSubmitBtn.classList.remove('popup__button-submit_disabled');
-  popupEdProfSubmitBtn.disabled = false;
-  hideInputErrors(popupEdProf);
-} */
-
-/* const closeEdFrofPopup = () => {
-  nameInput.value = "";
-  jobInput.value = "";
-  //toggleModal(popupEdProf);
-} */
-
-/* const openAdPicPopup = () => {
-  picNameInput.value = "";
-  picLinkInput.value = "";
-  toggleModal(popupAddPic);
-  hideInputErrors(popupAddPic);
-} */
-
-
-/* const handleFormSubmitAddPicture = (evt) => {
-  evt.preventDefault();
-
-  const addPicture = {};
-  addPicture.name = picNameInput.value;
-  addPicture.link = picLinkInput.value;
-
-  const cardAdded = new Card(addPicture, '.template');
-  const cardAddedElement = cardAdded.generateCard();
-
-  cards.prepend(cardAddedElement);
-
-  closeAdPicPopup();
-} */
 
 const enableValidation = {
   formSelector: '.popup__form',
@@ -76,7 +40,6 @@ const defaultCardList = new Section({
     const card = new Card(item, '.template', (event) => {
       const popupWithImage = new PopupWithImage('.popup_action_enlarge-picture');
       popupWithImage.open(event);
-      popupWithImage.setEventListeners();
     });
     const cardElement = card.generateCard();
     defaultCardList.addItem(cardElement);
@@ -85,26 +48,48 @@ const defaultCardList = new Section({
 
 defaultCardList.renderItems();
 
-popupEdProfOpenBtn.addEventListener('click', () => {
-  const popupEdProf = new PopupWithForm('.popup_action_edit-profile',
-  {handleFormSubmit: () => { }});
 
+const userData = new UserInfo({
+  userNameSelector: userName,
+  userInfoSelector: userInfo,
+});
+
+const popupEdProf = new PopupWithForm('.popup_action_edit-profile',
+{handleFormSubmit: (formData) => {
+  const newUserData = userData.setUserInfo(formData);
+},
+handleDefaultFormValues: () => {
+  const defaultUserData = userData.getUserInfo();
+
+  nameInput.value = defaultUserData.name;
+  jobInput.value = defaultUserData.info;
+
+  popupEdProfSubmitBtn.classList.remove('popup__button-submit_disabled');
+  popupEdProfSubmitBtn.disabled = false;
+}});
+
+popupEdProf.setEventListeners();
+
+popupEdProfOpenBtn.addEventListener('click', () => {
   popupEdProf.open()
 });
 
-popupAddPicOpenBtn.addEventListener('click', () => {
-  const popupAddPic = new PopupWithForm('.popup_action_add-picture',
-
+const popupAddPic = new PopupWithForm('.popup_action_add-picture',
   {handleFormSubmit: (formData) => {
     const newCard = new Card(formData, '.template', (event) => {
       const popupWithImage = new PopupWithImage('.popup_action_enlarge-picture');
       popupWithImage.open(event);
       popupWithImage.setEventListeners();
     });
+
     const newCardElement = newCard.generateCard();
     defaultCardList.addItem(newCardElement);
-    }
+    },
+  handleDefaultFormValues: () => {}
   })
 
+popupAddPic.setEventListeners();
+
+popupAddPicOpenBtn.addEventListener('click', () => {
   popupAddPic.open()
 });
