@@ -15,16 +15,16 @@ export class Card {
     return cardElement;
   }
 
-  _handleLike = (event) => {
+  _handleLike(event) {
     const evtTarget = event.target;
     evtTarget.classList.toggle('card__like-icon_status_clicked');
   };
 
-  _handleRemove = (event) => {
+  _handleRemove(event) {
     event.target.closest('.card').remove();
   };
 
-  _handleCardClick = () => {
+  _handleCardClick() {
     this._handleCardClick();
   }
 
