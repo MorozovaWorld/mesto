@@ -1,4 +1,4 @@
-import Popup from './Popup.js';
+import Popup from '../components/Popup.js';
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, { handleFormSubmit }) {
@@ -9,13 +9,8 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-<<<<<<< HEAD:scripts/components/PopupWithForm.js
     this._inputList = this._formElement.querySelectorAll('.popup__input-text');
     this._inputList.forEach(input => this._formValues[input.name] = input.value);
-=======
-    this._formValues = {};
-    this._inputList.forEach((input) => {this._formValues[input.name] = input.value});
->>>>>>> refactoringEightProject:src/scripts/components/PopupWithForm.js
 
     return this._formValues;
   }
