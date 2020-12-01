@@ -15,13 +15,13 @@ export class Card {
     return cardElement;
   }
 
-  _handleLike(event) {
-    const evtTarget = event.target;
-    evtTarget.classList.toggle('card__like-icon_status_clicked');
+  _handleLike() {
+    this._element.querySelector('.card__like-icon').classList.toggle('card__like-icon_status_clicked');
   };
 
-  _handleRemove(event) {
-    event.target.closest('.card').remove();
+  _handleRemove() {
+    this._element.remove();
+    this._element = null;
   };
 
   _handleCardClick() {
@@ -29,8 +29,8 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.card__delete').addEventListener('click', this._handleRemove);
-    this._element.querySelector('.card__like-icon').addEventListener('click', this._handleLike);
+    this._element.querySelector('.card__delete').addEventListener('click', this._handleRemove.bind(this));
+    this._element.querySelector('.card__like-icon').addEventListener('click', this._handleLike.bind(this));
     this._element.querySelector('.card__img').addEventListener('click', this._handleCardClick);
   }
 
@@ -38,8 +38,10 @@ export class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector('.card__img').src = this._link;
-    this._element.querySelector('.card__img').alt = this._name;
+    this._cardImg = this._element.querySelector('.card__img');
+
+    this._cardImg.src = this._link;
+    this._cardImg.alt = this._name;
     this._element.querySelector('.card__caption-text').textContent = this._name;
 
     return this._element;

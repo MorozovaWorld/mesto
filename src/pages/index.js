@@ -19,11 +19,14 @@ import {
   jobInput,
   userName,
   userInfo,
-  popupSubmitBtn,
+  popupEdProfSubmitBtn,
+  popupAdPicSubmitBtn,
   PopupWithImageSelector,
   popupEdProfSelector,
   popupAddPicSelector,
-  popupSubmitDisabledSelector
+  popupSubmitDisabledSelector,
+  picNameInput,
+  picLinkInput
 } from '../scripts/utils/constants.js';
 
 
@@ -33,21 +36,33 @@ editProfileFormValidator.enableValidation();
 const addPicFormValidator = new FormValidator(enableValidation, formElementAdPic);
 addPicFormValidator.enableValidation();
 
+const popupWithImage = new PopupWithImage(PopupWithImageSelector);
+popupWithImage.setEventListeners();
+
+function makeCard (data) {
+  const card = new Card(data, cardSelector, () => {
+    popupWithImage.open(data)});
+
+    const cardElement = card.generateCard();
+
+    return cardElement;
+}
+
+function selectSubmitBtn (popup, buttonSelector) {
+  const submitBtn = popup.querySelector(buttonSelector);
+console.log(popup);
+  return submitBtn;
+}
+
 const defaultCardList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, cardSelector, (event) => {
-      const popupWithImage = new PopupWithImage(PopupWithImageSelector);
-      popupWithImage.open(event);
-      popupWithImage.setEventListeners();
-    });
-    const cardElement = card.generateCard();
-    defaultCardList.addItemDefault(cardElement);
+  renderer: (data) => {
+    const makeNewCard = makeCard(data);
+    defaultCardList.addItemDefault(makeNewCard);
   }
 }, cardListSelector);
 
 defaultCardList.renderItems();
-
 
 const userData = new UserInfo({
   userNameSelector: userName,
@@ -64,33 +79,36 @@ handleDefaultFormValues: () => {
   nameInput.value = defaultUserData.name;
   jobInput.value = defaultUserData.info;
 
-  popupSubmitBtn.classList.remove(popupSubmitDisabledSelector);
-  popupSubmitBtn.disabled = false;
+  popupEdProfSubmitBtn.classList.remove(popupSubmitDisabledSelector);
+  popupEdProfSubmitBtn.disabled = false;
+
+  editProfileFormValidator.hideInputError(formElementEdProf, nameInput);
+  editProfileFormValidator.hideInputError(formElementEdProf, jobInput);
 }});
 
 popupEdProf.setEventListeners();
 
 popupEdProfOpenBtn.addEventListener('click', () => {
-  popupEdProf.open()
+  popupEdProf.open();
 });
 
 const popupAddPic = new PopupWithForm(popupAddPicSelector,
-  {handleFormSubmit: (formData) => {
-    const newCard = new Card(formData, cardSelector, (event) => {
-      const popupWithImage = new PopupWithImage(PopupWithImageSelector);
-      popupWithImage.open(event);
-      popupWithImage.setEventListeners();
-    });
-
-    const newCardElement = newCard.generateCard();
-    defaultCardList.addItem(newCardElement);
+  {handleFormSubmit: (data) => {
+    const makeNewCard = makeCard(data);
+    defaultCardList.addItem(makeNewCard);
     },
   handleDefaultFormValues: () => {
+    addPicFormValidator.hideInputError(formElementAdPic, picNameInput);
+    addPicFormValidator.hideInputError(formElementAdPic, picLinkInput);
   }
   })
 
 popupAddPic.setEventListeners();
 
 popupAddPicOpenBtn.addEventListener('click', () => {
-  popupAddPic.open()
+  popupAddPic.open();
+
+  popupAdPicSubmitBtn.classList.add(popupSubmitDisabledSelector);
+  popupAdPicSubmitBtn.disabled = true;
+  addPicFormValidator.hideInputError(formElementAdPic, formElementAdPic.querySelector(enableValidation.inputSelector));
 });

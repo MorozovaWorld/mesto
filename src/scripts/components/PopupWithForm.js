@@ -12,19 +12,6 @@ export default class PopupWithForm extends Popup {
   open() {
     super.open();
     this._handleDefaultFormValues();
-    this._hideInputErrors();
-  }
-
-  _hideInputErrors() {
-    this._inputErrors = Array.from(this._popup.querySelectorAll('.popup__input-error'));
-    this._inputErrors.forEach((error) => {
-      error.textContent = '';
-    });
-
-    this._inputsWithErrors = Array.from(this._inputList);
-    this._inputsWithErrors.forEach((errorInput) => {
-      errorInput.classList.remove('popup__input-text_type_error');
-    })
   }
 
   _getInputValues() {
