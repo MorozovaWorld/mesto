@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({ userNameSelector, userInfoSelector }) {
+  constructor({ userNameSelector, userInfoSelector, userPicSelector }) {
     this._userNameSelector = userNameSelector;
     this._userInfoSelector = userInfoSelector;
+    this._userPicSelector = userPicSelector;
   }
 
   getUserInfo() {
@@ -13,8 +14,12 @@ export default class UserInfo {
     return this._userData;
   }
 
-  setUserInfo(formData) {
-    this._userNameSelector.textContent = formData.name;
-    this._userInfoSelector.textContent = formData.info;
+  setUserInfo(newUserData) {
+    this._userNameSelector.textContent = newUserData.name;
+    this._userInfoSelector.textContent = newUserData.about;
+  }
+
+  setUserPic(newUserData) {
+    this._userPicSelector.src = newUserData.avatar;
   }
 }

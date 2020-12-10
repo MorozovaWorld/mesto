@@ -14,15 +14,23 @@
     </header>
     <main>
       <section class="profile section-width">
-        <img class="profile__image" alt="аватар владельца аккаунта" src="<%=require('./images/image.jpg')%>">
+        <div class="profile__image-div">
+          <img class="profile__image" alt="аватар владельца аккаунта" src="">
+          <div class="profile__image-edit-btn-div">
+            <button class="profile__image-edit-btn" type="submit">
+              <img src="<%=require('./images/edit-btn.svg')%>" alt="иконка редактирования фотографии профиля" class="profile__image-edit-btn-icon">
+            </button>
+          </div>
+        </div>
+
         <div class="profile__info">
           <div class="profile__title-edit">
-            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+            <h1 class="profile__info-title"></h1>
             <button class="profile__popup-button-open opacity" type="button">
               <img src="<%=require('./images/edit-btn.svg')%>" alt="иконка редактирования профиля" class="profile__popup-button-open-icon">
             </button>
           </div>
-          <p class="profile__info-subtitle">Исследователь океана</p>
+          <p class="profile__info-subtitle"></p>
         </div>
         <button class="addpic-popup-button-open opacity" type="button">
           <img src="<%=require('./images/add-btn.svg')%>" alt="кнопка добавить">
@@ -77,6 +85,40 @@
         </button>
       </div>
     </div>
+
+    <div class="popup popup_action_add-profile-picture">
+      <div class="popup__container popup__container_action_add-profile-picture">
+        <form class="popup__form popup__form_action_add-profile-picture" name="AddPictureform" novalidate>
+          <fieldset class="popup__input-text-form">
+            <legend class="popup__title popup__title_action_add-profile-picture">Обновить аватар</legend>
+            <div class="popup__input-container">
+              <input type="url" autocomplete="off" name='link' id="picLink" placeholder="Ссылка на картинку" class="popup__input-text popup__input-text_action_add-profile-picture" required>
+              <span id="picLink-error" class="popup__input-error"></span>
+            </div>
+          </fieldset>
+          <button type="submit" class="popup__button-submit popup__button-submit_action_add-profile-picture">Сохранить</button>
+        </form>
+        <button class="popup__close popup__close_position_add-picture-popup opacity" type="reset">
+          <img src="<%=require('./images/Close-Icon.svg')%>" alt="крестик чтобы закрыть окно редактирования">
+        </button>
+      </div>
+    </div>
+
+
+
+    <div class="popup popup_action_confirm-delete">
+      <div class="popup__container popup__container_action_confirm-delete">
+        <form class="popup__form popup__form_action_confirm-delete" name="submitDelete" novalidate>
+          <legend class="popup__title popup__title_action_confirm-delete">Вы уверены?</legend>
+          <button type="submit" class="popup__button-submit popup__button-submit_action_confirm-delete">Да</button>
+        </form>
+        <button class="popup__close popup__close_position_confirm-delete-popup opacity" type="reset">
+          <img src="<%=require('./images/Close-Icon.svg')%>" alt="крестик чтобы закрыть окно подтверждения">
+        </button>
+      </div>
+    </div>
+
+
     <div class="popup popup_action_enlarge-picture">
       <div class="popup__container-picture">
         <figure class="popup__figure">
@@ -89,14 +131,19 @@
       </div>
     </div>
   </div>
+
+
   <template class="template">
     <li class="card">
       <img src="" alt="фотография" class="card__img opacity">
       <div class="card__caption">
         <h2 class="card__caption-text"></h2>
-        <button type="button" class="card__like">
-          <img src="<%=require('./images/like.svg')%>" alt="иконка сердечка" class="card__like-icon opacity">
-        </button>
+        <div class="card__likes">
+          <button type="button" class="card__like">
+            <img src="<%=require('./images/like.svg')%>" alt="иконка сердечка" class="card__like-icon opacity">
+          </button>
+          <p class="card__like-counter">0</p>
+        </div>
         <button type="button" class="card__delete opacity">
           <img src="<%=require('./images/delete-btn.svg')%>" alt="иконка мусорной корзины">
         </button>
