@@ -32,26 +32,11 @@ import {
   userPic,
   popupWithSubmitSelector,
   likesCounterSelector,
-  cardInactiveLikeSelector,
-  cardActiveLikeSelector,
   popupEditProfilePicSelector,
   editProfPicBtn,
   formElementEditProfPic,
   popupEditProfPicSubmitBtn
 } from '../scripts/utils/constants.js';
-
-
-const editProfileFormValidator = new FormValidator(enableValidation, formElementEdProf);
-editProfileFormValidator.enableValidation();
-
-const addPicFormValidator = new FormValidator(enableValidation, formElementAdPic);
-addPicFormValidator.enableValidation();
-
-const popupWithImage = new PopupWithImage(PopupWithImageSelector);
-popupWithImage.setEventListeners();
-
-const editProfPicFormValidator = new FormValidator(enableValidation, formElementEditProfPic);
-editProfPicFormValidator.enableValidation();
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-18',
@@ -112,7 +97,7 @@ function makeCard (data) {
     handleCardLike: () => {
       api.likeCard(data)
         .then((res) => {
-          const likesCounter = cardElement.querySelector(likesCounterSelector); //переделать
+          const likesCounter = cardElement.querySelector(likesCounterSelector);
           likesCounter.textContent = res.likes.length;
           card.updateLikes(res.likes);
       })
@@ -120,7 +105,7 @@ function makeCard (data) {
     handleCardUnlike: () => {
       api.unlikeCard(data)
         .then((res) => {
-          const likesCounter = cardElement.querySelector(likesCounterSelector); //переделать
+          const likesCounter = cardElement.querySelector(likesCounterSelector);
           likesCounter.textContent = res.likes.length;
           card.updateLikes(res.likes);
       })
@@ -133,6 +118,8 @@ function makeCard (data) {
   return cardElement;
 }
 
+const popupWithImage = new PopupWithImage(PopupWithImageSelector);
+popupWithImage.setEventListeners();
 const userData = new UserInfo({
   userNameSelector: userName,
   userInfoSelector: userInfo,
@@ -141,11 +128,14 @@ const userData = new UserInfo({
 
 const popupEdProf = new PopupWithForm(popupEdProfSelector,
   {handleFormSubmit: (formData) => {
+      popupEdProfSubmitBtn.textContent = 'Сохранение...';
+
       api.editUserInfo(formData)
         .then((newUserData) => {
           userData.setUserInfo(newUserData);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => {popupEdProfSubmitBtn.textContent = 'Сохранить'})
       },
   handleDefaultFormValues: () => {
       const defaultUserData = userData.getUserInfo();
@@ -167,9 +157,13 @@ popupEdProfOpenBtn.addEventListener('click', () => {
   popupEdProf.open();
 });
 
+const editProfileFormValidator = new FormValidator(enableValidation, formElementEdProf);
+editProfileFormValidator.enableValidation();
+
 
 const popupAddPic = new PopupWithForm(popupAddPicSelector,
   {handleFormSubmit: (data) => {
+    popupEdProfSubmitBtn.textContent = 'Сохранение...';
     api.addCard(data)
       .then((cardElement) => {
         const makeNewCard = makeCard(cardElement);
@@ -178,7 +172,8 @@ const popupAddPic = new PopupWithForm(popupAddPicSelector,
       .then((card) => {
         cardList.addItem(card);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {popupEdProfSubmitBtn.textContent = 'Создать'})
     },
   handleDefaultFormValues: () => {
       addPicFormValidator.hideInputError(formElementAdPic, picNameInput);
@@ -196,26 +191,34 @@ popupAddPicOpenBtn.addEventListener('click', () => {
 
 popupAddPic.setEventListeners();
 
+const addPicFormValidator = new FormValidator(enableValidation, formElementAdPic);
+addPicFormValidator.enableValidation();
+
 
 const popupEditProfilePic = new PopupWithForm(popupEditProfilePicSelector, {
   handleFormSubmit: (formData) => {
+    popupEdProfSubmitBtn.textContent = 'Сохранение...';
     const newPic = api.editUserPic(formData);
     newPic
       .then((data) => {
         userData.setUserPic(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {popupEdProfSubmitBtn.textContent = 'Сохранить'})
     },
   handleDefaultFormValues: () => {
       editProfPicFormValidator.hideInputError(formElementEditProfPic, formElementEditProfPic.querySelector(enableValidation.inputSelector));
     }
-  })
+})
 
-  editProfPicBtn.addEventListener('click', () => {
-    popupEditProfilePic.open();
+editProfPicBtn.addEventListener('click', () => {
+  popupEditProfilePic.open();
 
     popupEditProfPicSubmitBtn.classList.add(popupSubmitDisabledSelector);
     popupEditProfPicSubmitBtn.disabled = true;
-  })
+})
 
-  popupEditProfilePic.setEventListeners();
+popupEditProfilePic.setEventListeners();
+
+const editProfPicFormValidator = new FormValidator(enableValidation, formElementEditProfPic);
+editProfPicFormValidator.enableValidation();

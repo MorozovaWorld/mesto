@@ -24,8 +24,6 @@ export const popupAddPicSelector = '.popup_action_add-picture';
 export const popupEditProfilePicSelector = '.popup_action_add-profile-picture';
 export const popupWithSubmitSelector = '.popup_action_confirm-delete';
 export const likesCounterSelector = '.card__like-counter';
-export const cardInactiveLikeSelector = '.card__like-icon';
-export const cardActiveLikeSelector = 'card__like-icon_status_clicked';
 
 
 export const enableValidation = {
