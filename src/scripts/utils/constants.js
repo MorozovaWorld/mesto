@@ -23,7 +23,6 @@ export const popupEdProfSelector = '.popup_action_edit-profile';
 export const popupAddPicSelector = '.popup_action_add-picture';
 export const popupEditProfilePicSelector = '.popup_action_add-profile-picture';
 export const popupWithSubmitSelector = '.popup_action_confirm-delete';
-export const likesCounterSelector = '.card__like-counter';
 
 
 export const enableValidation = {

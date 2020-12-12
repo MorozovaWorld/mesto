@@ -7,8 +7,10 @@ export default class Api {
     this._usersUrl = config.usersUrl;
     this._userUrl = config.userUrl;
     this._avatarUrl = config.avatarUrl;
-    this._resProcess = (res) => {if (res.ok) { return res.json() }
-      return Promise.reject(`Ошибка: ${res.status}`)}
+  }
+
+  _resProcess(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getUserInfo() {
