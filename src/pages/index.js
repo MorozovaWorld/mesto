@@ -90,7 +90,7 @@ function makeCard (data) {
       popupDeleteSubmit.setSubmitAction(() => {
         api.deleteCard(cardId)
         .then(res => card.removeCard())
-        .then(popupDeleteSubmit.close())
+        .then(() => popupDeleteSubmit.close())
         .catch((err) => console.log(err));
       });
 
@@ -127,7 +127,7 @@ const popupEdProf = new PopupWithForm(popupEdProfSelector,
         .then((newUserData) => {
           userProfileData.setUserInfo(newUserData);
         })
-        .then(popupEdProf.close())
+        .then(() => popupEdProf.close())
         .catch((err) => console.log(err))
         .finally(() => {popupEdProfSubmitBtn.textContent = 'Сохранить'})
       },
@@ -165,7 +165,7 @@ const popupAddPic = new PopupWithForm(popupAddPicSelector,
       .then((card) => {
         cardList.addItem(card);
       })
-      .then(popupAddPic.close())
+      .then(() => popupAddPic.close())
       .catch((err) => console.log(err))
       .finally(() => {popupAdPicSubmitBtn.textContent = 'Создать'})
     },
@@ -195,8 +195,8 @@ const popupEditProfilePic = new PopupWithForm(popupEditProfilePicSelector, {
       .then((data) => {
         userProfileData.setUserPic(data);
       })
+      .then(() => popupEditProfilePic.close())
       .catch((err) => console.log(err))
-      .then(popupEditProfilePic.close())
       .finally(() => {popupEditProfPicSubmitBtn.textContent = 'Сохранить'})
     },
   handleDefaultFormValues: () => {
